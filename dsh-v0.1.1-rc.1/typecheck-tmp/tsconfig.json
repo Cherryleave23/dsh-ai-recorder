@@ -1,0 +1,14 @@
+{
+  "extends": "../../../dsh-msg-link/dsh-v0.1.1-rc.1/typecheck-tmp/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "../plugin/src/**/*.ts",
+    "../plugin/src/shims.d.ts",
+    "./shims.d.ts"
+  ],
+  "exclude": [
+    "../plugin/src/client"
+  ]
+}

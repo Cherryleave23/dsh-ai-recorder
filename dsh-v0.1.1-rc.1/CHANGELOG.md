@@ -17,7 +17,8 @@
 ### 变更
 
 - **版本**：`0.1.0` → `0.1.1`（patch，标记 rc.1 内核适配）。
-- **typecheck 环境**：新增 `typecheck-tmp/recorder/tsconfig.rc1.json`（extends dsh-msg-link rc.1 配置，paths 指向 `dsh-official/deepseek-harness-v0.1.1-rc.1/`）；`package.json` typecheck script 改指该配置。
+- **目录格式**：改为要求的版本控制格式——`dsh-v0.1.1-rc.1/` 标准四件套（`plugin/` + `typecheck-tmp/` + `MANIFEST.md` + `CHANGELOG.md`）；源码/构建产物归位 `plugin/`，typecheck 环境自 `typecheck-tmp/recorder/` 迁入版本目录（node_modules 以 Junction 重建指向共享 pnpm store）；根目录新增 `README.md` 版本管理说明。安装路径改为 `file:...\dsh-v0.1.1-rc.1\plugin`。
+- **typecheck 环境**：`typecheck-tmp/tsconfig.json`（extends dsh-msg-link rc.1 配置，paths 指向 `dsh-official/deepseek-harness-v0.1.1-rc.1/`）；`package.json` typecheck script 改指该配置。
 - **MANIFEST**：新增「适配目标」节 + 消费面判定表；验证状态标注 rc.1 类型环境。
 
 ### 兼容性

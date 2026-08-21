@@ -15,7 +15,7 @@
 ## 适配目标
 
 - **当前适配内核**：`@deepseek-ai/dsh 0.1.1-rc.1`（官方源码 `dsh-official/deepseek-harness-v0.1.1-rc.1/`，根 package.json version 已核验）。
-- **适配方式**：单目录原地适配（非 dsh-v 多版本目录）。typecheck 环境 `typecheck-tmp/recorder/tsconfig.rc1.json`（extends dsh-msg-link rc.1 配置，paths 指向 rc.1 源码）。
+- **适配方式**：`dsh-v0.1.1-rc.1/` 版本目录（标准四件套：`plugin/` + `typecheck-tmp/` + `MANIFEST.md` + `CHANGELOG.md`）。typecheck 环境 `dsh-v0.1.1-rc.1/typecheck-tmp/tsconfig.json`（extends dsh-msg-link rc.1 配置，paths 指向 rc.1 源码）。
 - **适配结论**：**无需代码迁移**。消费面闸门（Stage 5）逐项取证，dsh-ai-recorder 不命中任何破坏性变更（详见下方判定表）。
 
 ### 消费面判定表（0.1.0-rc.7 → 0.1.1-rc.1，报告 `dsh-official/docs/0.1.1-rc.1.md`）
@@ -30,7 +30,7 @@
 | `credentials/authorization` 等新增能力 | 零消费（可选，无需动作） | 不命中 |
 
 - 消费的官方 service（`agents.get` / `agent.followup` / `sessions.*` / `llm.stream` / `agentDefaultModel.currentSelection` / `webServer.register` / `sessionTitle` 读侧）在 rc.1 均无签名破坏（报告哨兵 + 哨兵清单确认）。
-- **typecheck 实证**：`tsc --noEmit -p tsconfig.rc1.json` → 插件 src 0 错误（9 个官方源码噪音，与 rc.7 同型）。
+- **typecheck 实证**：`tsc --noEmit -p typecheck-tmp/tsconfig.json` → 插件 src 0 错误（9 个官方源码噪音，与 rc.7 同型）。
 
 ## 依赖闭包
 
@@ -62,8 +62,8 @@
 ## 官方装卸命令
 
 ```bash
-# 安装（file: 协议让包管理器落实依赖并录入装配栈）
-dsh plugin add file:D:\AI\默认工作流\dsh-plugins\dsh-AIrecorder
+# 安装（file: 协议让包管理器落实依赖并录入装配栈；指向版本目录内 plugin/）
+dsh plugin add file:D:\AI\默认工作流\dsh-plugins\dsh-AIrecorder\dsh-v0.1.1-rc.1\plugin
 
 # 卸载（移除包、依赖闭包与装配登记；自持状态由运行时自检自动清理）
 dsh plugin remove dsh-ai-recorder
@@ -101,7 +101,7 @@ dsh plugin remove dsh-ai-recorder
 
 | 项 | 状态 |
 |---|---|
-| typecheck（插件 src，rc.1 类型环境） | ✅ 0 错误（`tsconfig.rc1.json`，9 个官方源码噪音与 rc.7 同型） |
+| typecheck（插件 src，rc.1 类型环境） | ✅ 0 错误（`typecheck-tmp/tsconfig.json`，9 个官方源码噪音与 rc.7 同型） |
 | host build（build-lib.mjs） | ✅ 9 文件 → lib/ |
 | client build（tsdown） | ✅ client.js 35.94 kB |
 | 装卸验证 | ✅ 2026-08-21 实测通过：`dsh plugin add file:<目录>` 安装（bundles/dependencies/node_modules 闭包完整）→ 重启加载（日志 + HTTP health）→ `dsh plugin remove` 卸载（bundles/dependencies/node_modules 移除）→ 自检清理（60s 宽限期后自持状态清除、用户资产保留）→ 重装恢复 |

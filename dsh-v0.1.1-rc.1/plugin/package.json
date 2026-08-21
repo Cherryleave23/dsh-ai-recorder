@@ -24,9 +24,9 @@
     "tsdown": "^0.22.14"
   },
   "scripts": {
-    "typecheck": "node ../../typecheck-tmp/recorder/node_modules/typescript/bin/tsc -p ../../typecheck-tmp/recorder/tsconfig.rc1.json --noEmit",
-    "build": "node ../../typecheck-tmp/recorder/build-lib.mjs",
-    "build:client": "node ../dsh-c/node_modules/tsdown/dist/run.mjs --config-loader native --config ../../typecheck-tmp/recorder/tsdown.config.mjs"
+    "typecheck": "node ../typecheck-tmp/node_modules/typescript/bin/tsc -p ../typecheck-tmp/tsconfig.json --noEmit",
+    "build": "node ../typecheck-tmp/build-lib.mjs",
+    "build:client": "node ../../dsh-c/node_modules/tsdown/dist/run.mjs --config-loader native --config ../typecheck-tmp/tsdown.config.mjs"
   },
   "exports": {
     ".": {
