@@ -4,11 +4,11 @@
     "noEmit": true
   },
   "include": [
-    "../plugin/src/**/*.ts",
-    "../plugin/src/shims.d.ts",
+    "../src/**/*.ts",
+    "../src/shims.d.ts",
     "./shims.d.ts"
   ],
   "exclude": [
-    "../plugin/src/client"
+    "../src/client"
   ]
 }

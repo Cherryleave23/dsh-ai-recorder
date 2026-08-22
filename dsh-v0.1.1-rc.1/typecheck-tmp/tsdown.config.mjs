@@ -1,7 +1,7 @@
 // recorder client bundle 配置（JS 版：Node 22.16 无法原生加载 .ts 配置，需 .mjs）
 // 运行：node <tsdown cli> --config-loader native --config typecheck-tmp/tsdown.config.mjs （cwd 不限）
 const PLUGIN_ID = 'dsh-ai-recorder'
-const ROOT = 'D:/AI/默认工作流/dsh-plugins/dsh-AIrecorder/dsh-v0.1.1-rc.1/plugin'
+const ROOT = 'D:/AI/默认工作流/dsh-plugins/dsh-AIrecorder/dsh-v0.1.1-rc.1'
 
 const CLIENT_EXTERNALS = [
   'react', 'react/jsx-runtime', 'react-dom', 'react-dom/client',

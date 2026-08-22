@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
 
 const here = dirname(fileURLToPath(import.meta.url))
-const SRC = join(here, '..', 'plugin', 'src')
-const OUT = join(here, '..', 'plugin', 'lib')
+const SRC = join(here, '..', 'src')
+const OUT = join(here, '..', 'lib')
 
 const options = {
   target: ts.ScriptTarget.ES2024,
