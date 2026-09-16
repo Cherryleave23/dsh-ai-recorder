@@ -112,7 +112,8 @@ dsh plugin add file:<克隆路径>/dsh-v0.1.1-rc.1/plugin
 
 | 版本目录 | 适配目标内核 | 说明 |
 | --- | --- | --- |
-| `dsh-v0.1.1-rc.1/` | v0.1.1-rc.1 | 当前版本（依赖闭包/装卸/API 契约见其 `MANIFEST.md`，变更见 `CHANGELOG.md`） |
+| `dsh-v0.1.5-rc.2/` | v0.1.5-rc.2 | 当前版本（ASR 预设与环境引用计数卸载、后处理流转、纪要关联、界面双挂载面） |
+| `dsh-v0.1.1-rc.1/` | v0.1.1-rc.1 | 归档（依赖闭包/装卸/API 契约见其 `MANIFEST.md`，变更见 `CHANGELOG.md`） |
 
 > 各版本目录按「插件 → 版本」组织，官方 DSH 源码独立存放于同级 `dsh-official/`（不在本仓库内）。
 

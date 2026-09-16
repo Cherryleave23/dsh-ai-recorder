@@ -1,0 +1,58 @@
+{
+  "name": "dsh-ai-recorder",
+  "version": "0.1.2-alpha.5",
+  "description": "AI 录音卡(CB08/QS668)后端：五层架构 — BLE 采集(Opus 优先) → 音频解码与规范化 → FunASR 识别(离线+流式) → session_id 统一输出(本地音频/Markdown/实时文本流)",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "recorder",
+    "ble",
+    "funasr",
+    "asr"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "comment:files": "只发运行时需要的部分：lib 是构建产物（@deepseek-ai/* 构建时外部化，运行时由 DSH 模块加载器解析），scripts 是 Python 侧（BLE 守护进程 + FunASR worker），必须在安装目录里。",
+  "files": [
+    "lib",
+    "scripts",
+    "build.mjs",
+    "cordis.patch.yml"
+  ],
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.0-rc <5",
+    "@deepseek-ai/dsh-agent": ">=0.0.1-rc <2",
+    "@deepseek-ai/dsh-llm": ">=0.0.1-rc <2",
+    "@deepseek-ai/dsh-session": ">=0.0.1-rc <2",
+    "@deepseek-ai/schemastery": "^3.18.0"
+  },
+  "scripts": {
+    "typecheck": "node typecheck-tmp/generate-tsconfig.mjs && node typecheck-tmp/run-tsc.mjs",
+    "build": "node build.mjs",
+    "build:client": "node build.mjs"
+  }
+}
