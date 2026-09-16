@@ -1,4 +1,7 @@
 node_modules/
-lib/
 *.tsbuildinfo
 *.tgz
+
+# 注意：lib/ 是【有意纳入版本控制】的构建产物。
+# 这样克隆下来即可直接 dsh plugin add，无需先 npm install && npm run build。
+# 改动 src/ 后请执行 npm run build，并把 lib/ 一并提交。
