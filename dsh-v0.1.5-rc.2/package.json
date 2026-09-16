@@ -27,6 +27,7 @@
     "cordis.patch.yml"
   ],
   "license": "BSD-3-Clause",
+  "author": "Cherryleave23",
   "engines": {
     "node": ">=22"
   },
